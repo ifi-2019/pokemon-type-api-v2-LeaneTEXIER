@@ -80,5 +80,16 @@ class PokemonTypeControllerTest {
         assertArrayEquals(new String[]{"name"}, getMapping.params());
     }
 
+    @Test
+    void getPokemonTypeByTypes_shouldBeAnnotated() throws NoSuchMethodException {
+        var getPokemonTypeByTypes =
+                PokemonTypeController.class.getDeclaredMethod("getPokemonTypeByTypes", String.class);
+        var getMapping = getPokemonTypeByTypes.getAnnotation(GetMapping.class);
+
+        assertNotNull(getMapping);
+        assertArrayEquals(new String[]{"/"}, getMapping.value());
+        assertArrayEquals(new String[]{"types"}, getMapping.params());
+    }
+
 
 }

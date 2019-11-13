@@ -9,6 +9,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)

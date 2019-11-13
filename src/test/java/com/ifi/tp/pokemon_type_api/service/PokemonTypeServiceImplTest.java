@@ -5,6 +5,9 @@ import com.ifi.tp.pokemon_type_api.repository.PokemonTypeRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
@@ -58,6 +61,26 @@ class PokemonTypeServiceImplTest {
         var context = new AnnotationConfigApplicationContext("com.ifi.tp.pokemon_type_api");
         var service = context.getBean(PokemonTypeServiceImpl.class);
         assertNotNull(service.pokemonTypeRepository);
+    }
+
+    @Test
+    void pokemonTypeRepository_shouldBeCalled_whenFindByTypes_electric(){
+        var pokemonTypeRepository = mock(PokemonTypeRepository.class);
+        var pokemonTypeService = new PokemonTypeServiceImpl(pokemonTypeRepository);
+
+        pokemonTypeService.getPokemonTypeByTypes(Arrays.asList("electric"));
+
+        verify(pokemonTypeRepository).findPokemonTypeByTypes(Arrays.asList("electric"));
+    }
+
+    @Test
+    void pokemonTypeRepository_shouldBeCalled_whenFindByTypes_bugAndPoison(){
+        var pokemonTypeRepository = mock(PokemonTypeRepository.class);
+        var pokemonTypeService = new PokemonTypeServiceImpl(pokemonTypeRepository);
+
+        pokemonTypeService.getPokemonTypeByTypes(Arrays.asList("bug", "poison"));
+
+        verify(pokemonTypeRepository).findPokemonTypeByTypes(Arrays.asList("bug", "poison"));
     }
 
 }
