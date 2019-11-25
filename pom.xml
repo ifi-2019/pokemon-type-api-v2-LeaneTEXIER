@@ -1,7 +1,7 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ifi.tp</groupId>
-    <artifactId>ifi-2019-starter</artifactId>
+    <artifactId>pokemon-type-api-v2-LeaneTEXIER</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging> 
 
