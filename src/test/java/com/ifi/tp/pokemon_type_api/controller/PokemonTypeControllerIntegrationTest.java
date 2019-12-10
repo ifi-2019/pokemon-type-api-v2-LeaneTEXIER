@@ -9,8 +9,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
@@ -44,6 +42,16 @@ class PokemonTypeControllerIntegrationTest {
     }
 
     @Test
+    void getAllPokemons_ShouldReturn151Pokemons() throws Exception {
+        var url = "http://localhost:" + port + "/pokemon-types/";
+
+        var pokemons = this.restTemplate.getForObject(url, PokemonType[].class);
+
+        assertNotNull(pokemons);
+        assertEquals(151, pokemons.length);
+    }
+
+    @Test
     void getPokemon_withNamePikachu_ShouldReturnId25() throws Exception {
         var url = "http://localhost:" + port + "/pokemon-types/?name=pikachu";
 
@@ -53,5 +61,25 @@ class PokemonTypeControllerIntegrationTest {
         assertEquals("pikachu", pikachu.getName());
         assertEquals(25, pikachu.getId());
         assertEquals(4, pikachu.getHeight());
+    }
+
+    @Test
+    void getPokemon_withTypeElectric_ShouldReturn9Pokemons() throws Exception {
+        var url = "http://localhost:" + port + "/pokemon-types/?types=electric";
+
+        var pokemons = this.restTemplate.getForObject(url, PokemonType[].class);
+
+        assertNotNull(pokemons);
+        assertEquals(9, pokemons.length);
+    }
+
+    @Test
+    void getPokemon_withTypesBugAndPoison_ShouldReturn5Pokemons() throws Exception {
+        var url = "http://localhost:" + port + "/pokemon-types/?types=bug,poison";
+
+        var pokemons = this.restTemplate.getForObject(url, PokemonType[].class);
+
+        assertNotNull(pokemons);
+        assertEquals(5, pokemons.length);
     }
 }

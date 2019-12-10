@@ -1,11 +1,9 @@
 package com.ifi.tp.pokemon_type_api.service;
 
 import com.ifi.tp.pokemon_type_api.repository.PokemonTypeRepository;
-import com.ifi.tp.pokemon_type_api.repository.PokemonTypeRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
